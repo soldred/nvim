@@ -1,3 +1,4 @@
 luarocks
 imagemagick
 fzf
+php

@@ -5,10 +5,10 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
-		local hind_in_width = function()
+		local hide_in_width = function()
 			return vim.fn.winwidth(0) > 100
 		end
-		
+
 		local diagnostics = {
 			"diagnostics",
 			sources = { "nvim_diagnostic" },
@@ -23,16 +23,21 @@ return {
 			options = {
 				icons_enables = true,
 				theme = "auto",
-				section_separators = { left = '', right = '' },
-				component_separators = { left = '', right = '' },
-				disabled_filetypes = { 'alpha', 'neo-tree' },
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
+				disabled_filetypes = { "alpha", "neo-tree" },
 				always_divide_middle = true,
 			},
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch" },
 				lualine_c = { "filename" },
-				lualine_x = { diagnostics, "diff", { "encoding", cond = hide_in_width}, {"filetype", cond = hind_in_width} },
+				lualine_x = {
+					diagnostics,
+					"diff",
+					{ "encoding", cond = hide_in_width },
+					{ "filetype", cond = hide_in_width },
+				},
 				lualine_y = { "location" },
 				lualine_z = { "progress" },
 			},
@@ -47,5 +52,5 @@ return {
 			tabline = {},
 			extenstions = { "fugitive" },
 		})
-	end
+	end,
 }

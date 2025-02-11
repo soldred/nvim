@@ -1,16 +1,16 @@
-return{
+return {
 	"nvim-telescope/telescope.nvim",
 	event = "VimEnter",
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		{ 
-			"nvim-telescope/telescope-fzf-native.nvim", 
+		{
+			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
 			-- `cond` is a condition used to determine whether this plugin should be
 			-- installed and loaded.
 			cond = function()
-				return vim.fn.executable 'make' == 1
+				return vim.fn.executable("make") == 1
 			end,
 		},
 		"nvim-telescope/telescope-ui-select.nvim",
@@ -22,31 +22,30 @@ return{
 		{ "<leader>sf", "<cmd>Telescope find_files<CR>", desc = "Seach Files" },
 		{ "<leader>ss", "<cmd>Telescope builtin<CR>", desc = "Search Select Telescope" },
 		{ "<leader>sw", "<cmd>Telescope grep_string<CR>", desc = "Seach current Word" },
-		{ "<leader>sg", "<cmd>Telescope live_grep<CR>", desc = "Search by Grep"},
+		{ "<leader>sg", "<cmd>Telescope live_grep<CR>", desc = "Search by Grep" },
 		{ "<leader>sd", "<cmd>Telescop diagnostics<CR>", desc = "Search Diagnostics" },
 		{ "<leader>s.", "<cmd>Telescope oldfiles<CR>", desc = "Search Recent Fiels ('.' ro repeat)" },
 		{ "<leader><leader>", "<cmd>Telescope buffers<CR>", desc = "Find existing buffers" },
-		{ 
-			"<leader>/", 
+		{
+			"<leader>/",
 			function()
 				require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 					windblend = 10,
 					previewer = false,
 				}))
 			end,
-			desc = "Fuzzily search in current buffer", 
+			desc = "Fuzzily search in current buffer",
 		},
 		{
 			-- Shortcut for searching your Neovim config file
 			"<leader>sn",
 			function()
 				require("telescope.builtin").find_files({
-					cwd = vim.fn.stdpath "config"
+					cwd = vim.fn.stdpath("config"),
 				})
 			end,
-			desc = "Search Neovim Files"
-		}
-
+			desc = "Search Neovim Files",
+		},
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -80,15 +79,12 @@ return{
 				file_ignore_patterns = { "node_modules", ".git", ".venv" },
 				additions_args = function(_)
 					return { "--hidden" }
-				end
+				end,
 			},
 		})
-		
+
 		-- Enable Telescope extensions if they are installed
 		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "ui-select")
-
-
-
-	end
+	end,
 }
