@@ -46,6 +46,7 @@ return {
 			{ "<leader>s", group = "Search" },
 			{ "<leader>w", group = "Workspace" },
 			{ "<leader>t", group = "Toggle" },
+			{ "<leader>h", group = "Git Hunk", mode = { "n", "v" } },
 		},
 	},
 	config = function(_, opts)
