@@ -10,7 +10,16 @@ return {
 		{
 			"<leader>e",
 			function()
-				vim.cmd("Neotree toggle")
+				local clients = vim.lsp.get_clients({ bufnr = 0 })
+				local dir = ""
+
+				if #clients > 0 and clients[1].config.root_dir then
+					dir = clients[1].config.root_dir
+				else
+					dir = vim.fn.getcwd()
+				end
+
+				vim.cmd("Neotree toggle dir=" .. vim.fn.fnameescape(dir))
 			end,
 			desc = "Toggle explorer",
 			silent = true,
@@ -20,14 +29,22 @@ return {
 		popup_border_style = "rounded",
 		enable_diagnostics = true,
 		open_files_do_no_replace_typec = { "terminal", "Trouble", "trouble", "qf", "Outline" },
-		sources = { "filesystem", "buffers", "git_status" },
+		sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+		filesystem = {
+			follow_current_file = {
+				enabled = true,
+				leave_dirs_open = true,
+			},
+			use_libuv_file_watcher = false,
+		},
+		bind_to_cwd = true,
 		source_selector = {
 			winbar = true,
 			sources = {
 				{ source = "filesystem", display_name = " 󰉓 File " },
 				{ source = "git_status", display_name = " 󰊢 Git " },
 				{ source = "buffers", display_name = " 󰓩 Buf " },
-				-- { source = "document_symbols", display_name = "  Sym " },
+				{ source = "document_symbols", display_name = "  Sym " },
 			},
 			-- content_layout = "center",
 		},
