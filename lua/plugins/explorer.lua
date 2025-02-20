@@ -27,8 +27,18 @@ return {
 	},
 	opts = {
 		event_handlers = {
-			{ event = "file_moved", handler = function(data) Snacks.rename.on_rename_file(data.source, data.destination) end },
-			{ event = "file_renamed", handler = function(data) Snacks.rename.on_rename_file(data.source, data.destination) end },
+			{
+				event = "file_moved",
+				handler = function(data)
+					Snacks.rename.on_rename_file(data.source, data.destination)
+				end,
+			},
+			{
+				event = "file_renamed",
+				handler = function(data)
+					Snacks.rename.on_rename_file(data.source, data.destination)
+				end,
+			},
 		},
 		popup_border_style = "rounded",
 		enable_diagnostics = true,
@@ -132,4 +142,3 @@ return {
 		require("neo-tree").setup(opts)
 	end,
 }
-
