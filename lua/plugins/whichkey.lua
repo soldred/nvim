@@ -42,10 +42,8 @@ return {
 		spec = {
 			{ "<leader>c", group = "Code", mode = { "n", "x" } },
 			{ "<leader>d", group = "Document" },
-			{ "<leader>r", group = "Rename" },
 			{ "<leader>s", group = "Search" },
-			{ "<leader>w", group = "Workspace" },
-			{ "<leader>t", group = "Toggle" },
+			{ "<leader>f", group = "Find" },
 			{ "<leader>h", group = "Git Hunk", mode = { "n", "v" } },
 		},
 	},

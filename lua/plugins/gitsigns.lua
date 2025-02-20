@@ -11,7 +11,7 @@ return {
 	},
 	keys = {
 		{
-			"<leader>]c",
+			"<leader>]h",
 			function()
 				if vim.wo.diff then
 					vim.cmd.normal({ "]c", bang = true })
@@ -22,7 +22,7 @@ return {
 			desc = "Jump to next git change",
 		},
 		{
-			"<leader>[c",
+			"<leader>[h",
 			function()
 				if vim.wo.diff then
 					vim.cmd.normal({ "[c", bang = true })
@@ -33,97 +33,82 @@ return {
 			desc = "Jump to previous git change",
 		},
 		{
-			"<leader>hs",
-			function()
-				require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-			end,
-			mode = { "v" },
-			desc = "git stage hunk",
-		},
-		{
-			"<leader>hr",
-			function()
-				require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-			end,
-			mode = { "v" },
-			desc = "git reset hunk",
-		},
-		{
-			"<leader>hs",
+			"<leader>ghs",
 			function()
 				require("gitsigns").stage_hunk()
 			end,
-			desc = "git stage hunk",
+			desc = "Stage Hunk",
 		},
 		{
-			"<leader>hr",
+			"<leader>ghr",
 			function()
 				require("gitsigns").reset_hunk()
 			end,
-			desc = "git reset buffer",
+			desc = "Reset Buffer",
 		},
 		{
-			"<leader>hS",
+			"<leader>ghS",
 			function()
 				require("gitsigns").stage_buffer()
 			end,
-			desc = "git Stage buffer",
+			desc = "Stage Buffer",
 		},
 		{
-			"<leader>hu",
-			function()
-				require("gitsigns").undo_stage_hunk()
-			end,
-			desc = "git undo stage hunk",
-		},
-		{
-			"<leader>hR",
+			"<leader>ghR",
 			function()
 				require("gitsigns").reset_buffer()
 			end,
-			desc = "git Reset buffer",
+			desc = "Reset Buffer",
 		},
 		{
-			"<leader>hp",
+			"<leader>ghp",
 			function()
 				require("gitsigns").preview_hunk()
 			end,
-			desc = "git preview hunk",
+			desc = "Preview Hunk",
 		},
 		{
-			"<leader>hb",
+			"<leader>ghb",
 			function()
 				require("gitsigns").blame_line()
 			end,
-			desc = "git blame line",
+			desc = "Blame Line",
 		},
 		{
-			"<leader>hd",
+			"<leader>ghB",
+			function()
+				require("gitsigns").blame()
+			end,
+			desc = "Blame Buffer",
+		},
+		{
+			"<leader>ghd",
 			function()
 				require("gitsigns").diffthis()
 			end,
-			desc = "git diff against index",
+			desc = "Diff Against Index",
 		},
 		{
-			"<leader>hD",
+			"<leader>ghD",
 			function()
 				require("gitsigns").diffthis("@")
 			end,
-			desc = "git Diff against last commit",
+			desc = "Diff Against Last Commit",
 		},
 		{
-			"<leader>tb",
+			"<leader>gtb",
 			function()
 				require("gitsigns").toggle_current_line_blame()
 			end,
-			desc = "Toggle git show blame line",
+			desc = "Toggle Blame Line",
 		},
 		{
-			"<leader>tD",
+			"<leader>gtp",
 			function()
 				require("gitsigns").preview_hunk_inline()
 			end,
-			desc = "Toggle git show Deleted",
+			desc = "Toggle Deleted",
 		},
 	},
 }
+

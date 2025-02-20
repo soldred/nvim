@@ -3,8 +3,6 @@ return {
 	event = "VeryLazy",
 	dependencies = {
 		"MunifTanjim/nui.nvim",
-		"rcarriga/nvim-notify",
-	},
 	opts = {
 		lsp = {
 			override = {
@@ -25,4 +23,5 @@ return {
 	config = function(_, opts)
 		require("noice").setup(opts)
 	end,
+	},
 }
