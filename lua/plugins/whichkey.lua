@@ -44,7 +44,7 @@ return {
 			{ "<leader>d", group = "Document" },
 			{ "<leader>s", group = "Search" },
 			{ "<leader>f", group = "Find" },
-			{ "<leader>h", group = "Git Hunk", mode = { "n", "v" } },
+			{ "<leader>g", group = "Git" },
 		},
 	},
 	config = function(_, opts)

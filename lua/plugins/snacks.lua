@@ -3,6 +3,7 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
+		bigfile = { enabled = true },
 		picker = { enabled = true },
 		dashboard = { enabled = true },
 		rename = { enabled = true },
@@ -10,11 +11,11 @@ return {
 			enabled = true,
 			animate = {
 				enabled = false,
-			}
+			},
 		},
-		notifier= {
+		notifier = {
 			enabled = true,
 			timeout = 3000,
-		}
+		},
 	},
 }
