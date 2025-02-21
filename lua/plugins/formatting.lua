@@ -1,5 +1,4 @@
-
--- NOTE Formatters are installing in lsp.lua. Don't ask me why. Just because.
+-- NOTE: Formatters are installing in lsp.lua
 
 return {
 	"stevearc/conform.nvim",
@@ -53,5 +52,5 @@ return {
 				-- You can use 'stop_after_first' to run the first available formatter from the list
 			},
 		})
-	end
+	end,
 }

@@ -11,7 +11,7 @@ return {
 	},
 	keys = {
 		{
-			"<leader>]h",
+			"]c",
 			function()
 				if vim.wo.diff then
 					vim.cmd.normal({ "]c", bang = true })
@@ -22,7 +22,7 @@ return {
 			desc = "Jump to next git change",
 		},
 		{
-			"<leader>[h",
+			"[c",
 			function()
 				if vim.wo.diff then
 					vim.cmd.normal({ "[c", bang = true })
@@ -44,7 +44,7 @@ return {
 			function()
 				require("gitsigns").reset_hunk()
 			end,
-			desc = "Reset Buffer",
+			desc = "Reset Hunk",
 		},
 		{
 			"<leader>ghS",
@@ -67,6 +67,7 @@ return {
 			end,
 			desc = "Preview Hunk",
 		},
+
 		{
 			"<leader>ghb",
 			function()
@@ -111,4 +112,3 @@ return {
 		},
 	},
 }
-

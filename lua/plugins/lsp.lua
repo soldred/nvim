@@ -22,7 +22,7 @@ return {
 		},
 		config = function()
 			require("lsp-file-operations").setup()
-		end
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -30,6 +30,7 @@ return {
 			{ "williamboman/mason.nvim", opts = {} },
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			{ "j-hui/fidget.nvim", opts = {} },
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		opts = {
@@ -54,13 +55,27 @@ return {
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
 					end
 
-					map("gd", function() Snacks.picker.lsp_definitions() end, "Goto Definition")
-					map("gD", function() Snacks.picker.lsp_declarations() end, "Goto Declaration")
-					map("gr", function() Snacks.picker.lsp_references() end, "Goto Reference")
-					map("gI", function() Snacks.picker.lsp_implementations() end, "Goto Implementation")
-					map("<leader>cR", function() Snacks.rename.rename_file() end, "Rename File")
-					map("<leader>ss", function() Snacks.picker.lsp_symbols() end, "Lsp Symbols")
-					map("<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, "LSP Worksapce Symbols")
+					map("gd", function()
+						Snacks.picker.lsp_definitions()
+					end, "Goto Definition")
+					map("gD", function()
+						Snacks.picker.lsp_declarations()
+					end, "Goto Declaration")
+					map("gr", function()
+						Snacks.picker.lsp_references()
+					end, "Goto Reference")
+					map("gI", function()
+						Snacks.picker.lsp_implementations()
+					end, "Goto Implementation")
+					map("<leader>cR", function()
+						Snacks.rename.rename_file()
+					end, "Rename File")
+					map("<leader>ss", function()
+						Snacks.picker.lsp_symbols()
+					end, "Lsp Symbols")
+					map("<leader>sS", function()
+						Snacks.picker.lsp_workspace_symbols()
+					end, "LSP Worksapce Symbols")
 					map("<leader>cr", vim.lsp.buf.rename, "Rename")
 					map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
 
@@ -89,7 +104,7 @@ return {
 							end,
 						})
 					end
-				end
+				end,
 			})
 
 			-- This neede for checking if certain plugins installed
@@ -105,22 +120,18 @@ return {
 				has_blink and blink.get_lsp_capabilities() or {},
 				opts.capabilities or {}
 			)
-			local lspconfig = require'lspconfig'
+			local lspconfig = require("lspconfig")
 
 			-- Set global defaults for all servers
-			lspconfig.util.default_config = vim.tbl_extend(
-				'force',
-				lspconfig.util.default_config,
-				{
-					capabilities = vim.tbl_deep_extend(
-						"force",
-						vim.lsp.protocol.make_client_capabilities(),
-						-- returns configured operations if setup() was already called
-						-- or default operations if not
-						require'lsp-file-operations'.default_capabilities()
-					)
-				}
-			)
+			lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
+				capabilities = vim.tbl_deep_extend(
+					"force",
+					vim.lsp.protocol.make_client_capabilities(),
+					-- returns configured operations if setup() was already called
+					-- or default operations if not
+					require("lsp-file-operations").default_capabilities()
+				),
+			})
 			-- Here you can setup servers separately
 			local servers = {
 				lua_ls = {
@@ -129,13 +140,18 @@ return {
 							completions = {
 								callSnippet = "Reaplace",
 							},
-							diagnostics = { disable = { "missing-fields" } },
+							diagnostics = {
+								disable = {
+									"missing-fields",
+								},
+							},
 						},
 					},
 				},
 				clangd = {},
 				pyright = {},
 				intelephense = {},
+				phpactor = {},
 				html = {},
 				emmet_ls = {},
 				cssls = {},
@@ -144,7 +160,6 @@ return {
 				jsonls = {},
 				ts_ls = {},
 			}
-			
 
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
@@ -163,9 +178,9 @@ return {
 						local server = servers[server_name] or {}
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
-					end
-				}
+					end,
+				},
 			})
-		end
-	}
+		end,
+	},
 }

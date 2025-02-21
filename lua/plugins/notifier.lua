@@ -1,7 +1,7 @@
-return{
+return {
 	"snacks.nvim",
 	opts = {
-		notifier= { 
+		notifier = {
 			timeout = 3000,
 		},
 	},
@@ -11,7 +11,7 @@ return{
 			function()
 				Snacks.notifier.show_history()
 			end,
-			desc = "Notification history"
-		}
+			desc = "Notification history",
+		},
 	},
 }
