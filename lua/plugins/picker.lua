@@ -56,9 +56,25 @@ return {
 		{
 			"<leader>ff",
 			function()
-				Snacks.picker.files()
+				local clients = vim.lsp.get_clients({ bufnr = 0 })
+				local dir = ""
+
+				if #clients > 0 and clients[1].config.root_dir then
+					dir = clients[1].config.root_dir
+				else
+					dir = vim.fn.getcwd()
+				end
+				dir = dir or ""
+				Snacks.picker.files({ cwd = dir })
 			end,
 			desc = "Find Files",
+		},
+		{
+			"<leader>fa",
+			function()
+				Snacks.picker.files()
+			end,
+			desc = "Find All Files",
 		},
 		{
 			"<leader>fg",

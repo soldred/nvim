@@ -18,7 +18,7 @@ return {
 				else
 					dir = vim.fn.getcwd()
 				end
-
+				dir = dir or ""
 				vim.cmd("Neotree toggle dir=" .. vim.fn.fnameescape(dir))
 			end,
 			desc = "Toggle explorer",

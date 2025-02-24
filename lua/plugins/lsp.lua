@@ -38,14 +38,6 @@ return {
 			codelens = {
 				enabled = false,
 			},
-			-- capabilities = {
-			-- 	wokspace = {
-			-- 		fileOperations = {
-			-- 			didRename = true,
-			-- 			willRename = true,
-			-- 		}
-			-- 	}
-			-- }
 		},
 		config = function(_, opts)
 			vim.api.nvim_create_autocmd("LspAttach", {

@@ -30,7 +30,6 @@ return { -- Autocompletion
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-buffer",
 		-- HTML id and class attribute completion for Neovim
-		"Jezda1337/nvim-html-css",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -96,7 +95,8 @@ return { -- Autocompletion
 				-- Accept ([y]es) the completion.
 				--  This will auto-import if your LSP supports it.
 				--  This will expand snippets if the LSP sent a snippet.
-				["<C-y>"] = cmp.mapping.confirm({ select = true }),
+				-- ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+				["<C-CR>"] = cmp.mapping.confirm({ select = true }),
 				-- ['<C-n>'] = cmp.mapping.select_next_item(),
 				-- ['<C-p>'] = cmp.mapping.select_prev_item(),
 				-- If you prefer more traditional completion keymaps,
@@ -130,16 +130,6 @@ return { -- Autocompletion
 				{ name = "luasnip" },
 				{ name = "path" },
 				{ name = "buffer" },
-				{
-					name = "html-css",
-					option = {
-						enable_on = { "html", "php" },
-						notify = false,
-						documentation = {
-							auto_show = true,
-						},
-					},
-				},
 			},
 
 			formatting = {
