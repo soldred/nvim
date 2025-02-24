@@ -32,6 +32,7 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			{ "j-hui/fidget.nvim", opts = {} },
 			"hrsh7th/cmp-nvim-lsp",
+			"b0o/SchemaStore.nvim",
 		},
 		opts = {
 			codelens = {
@@ -55,29 +56,18 @@ return {
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
 					end
 
-					map("gd", function()
-						Snacks.picker.lsp_definitions()
-					end, "Goto Definition")
-					map("gD", function()
-						Snacks.picker.lsp_declarations()
-					end, "Goto Declaration")
-					map("gr", function()
-						Snacks.picker.lsp_references()
-					end, "Goto Reference")
-					map("gI", function()
-						Snacks.picker.lsp_implementations()
-					end, "Goto Implementation")
-					map("<leader>cR", function()
-						Snacks.rename.rename_file()
-					end, "Rename File")
-					map("<leader>ss", function()
-						Snacks.picker.lsp_symbols()
-					end, "Lsp Symbols")
-					map("<leader>sS", function()
-						Snacks.picker.lsp_workspace_symbols()
-					end, "LSP Worksapce Symbols")
+					-- stylua: ignore start
+					map("gd", function() Snacks.picker.lsp_definitions() end, "Goto Definition")
+					map("gD", function() Snacks.picker.lsp_declarations() end, "Goto Declaration")
+					map("gr", function() Snacks.picker.lsp_references() end, "Goto Reference")
+					map("gI", function() Snacks.picker.lsp_implementations() end, "Goto Implementation")
+					map("<leader>cR", function() Snacks.rename.rename_file() end, "Rename File")
+					map("<leader>ss", function() Snacks.picker.lsp_symbols() end, "Lsp Symbols")
+					map("<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, "LSP Worksapce Symbols")
+					map("K", vim.lsp.buf.hover, "Hover")
 					map("<leader>cr", vim.lsp.buf.rename, "Rename")
 					map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { "n", "x" })
+					-- stylua: ignore end
 
 					-- When you move your cursor, the highlights will be cleared (the second autocommand).
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -150,15 +140,29 @@ return {
 				},
 				clangd = {},
 				pyright = {},
-				intelephense = {},
-				phpactor = {},
+				intelephense = {
+					IntelephenseIndex = {
+						function()
+							vim.lsp.buf.execute_command({ command = "intelephense.index.workspace" })
+						end,
+					},
+				},
+				-- phpactor = {},
 				html = {},
 				emmet_ls = {},
 				cssls = {},
 				css_variables = {},
 				cssmodules_ls = {},
-				jsonls = {},
+				jsonls = {
+					settings = {
+						json = {
+							schemas = require("schemastore").json.schemas(),
+							validate = { enable = true },
+						},
+					},
+				},
 				ts_ls = {},
+				bashls = {},
 			}
 
 			local ensure_installed = vim.tbl_keys(servers or {})
@@ -166,8 +170,11 @@ return {
 				"stylua", -- lua formatter
 				"prettierd", -- js formatter
 				"php-cs-fixer", -- php formatter
+				"pint", -- php/laravel formatter
 				"clang-format", -- c, c++ formatter
 				"ruff", -- python formatter
+				"beautysh",
+				"blade-formatter", -- blade formatter
 			})
 
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

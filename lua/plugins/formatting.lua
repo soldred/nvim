@@ -37,7 +37,7 @@ return {
 				lua = { "stylua" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
-				php = { "php-cs-fixer" },
+				php = { "pint", "php-cs-fixer", stop_after_first = true },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				typescript = { "prettierd" },
 				html = { "prettierd" },
@@ -45,11 +45,10 @@ return {
 				scss = { "prettierd" },
 				json = { "prettierd" },
 				python = { "ruff" },
-
-				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
-				--
-				-- You can use 'stop_after_first' to run the first available formatter from the list
+				sh = { "beautysh" },
+				zsh = { "beautysh" },
+				bash = { "beautysh" },
+				blade = { "blade-formatter" },
 			},
 		})
 	end,

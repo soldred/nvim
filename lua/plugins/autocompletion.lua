@@ -29,6 +29,8 @@ return { -- Autocompletion
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-buffer",
+		-- HTML id and class attribute completion for Neovim
+		"Jezda1337/nvim-html-css",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -128,6 +130,16 @@ return { -- Autocompletion
 				{ name = "luasnip" },
 				{ name = "path" },
 				{ name = "buffer" },
+				{
+					name = "html-css",
+					option = {
+						enable_on = { "html", "php" },
+						notify = false,
+						documentation = {
+							auto_show = true,
+						},
+					},
+				},
 			},
 
 			formatting = {
