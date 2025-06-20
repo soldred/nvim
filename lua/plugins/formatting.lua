@@ -1,5 +1,3 @@
--- NOTE: Formatters are installing in lsp.lua
-
 return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre", "BufNewFile" },

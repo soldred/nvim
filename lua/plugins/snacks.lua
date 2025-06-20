@@ -6,16 +6,16 @@ return {
 		bigfile = { enabled = true },
 		picker = { enabled = true },
 		dashboard = { enabled = true },
-		rename = { enabled = true },
 		indent = {
 			enabled = true,
 			animate = {
-				enabled = false,
+				enabled = true,
 			},
 		},
 		notifier = {
 			enabled = true,
 			timeout = 3000,
 		},
+		rename = { enabled = true },
 	},
 }

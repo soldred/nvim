@@ -1,7 +1,7 @@
----@diagnostic disable: undefined-global
 return {
 	"snacks.nvim",
-	opts = {},
+	priority = 1000,
+	lazy = false,
 	keys = {
 		{
 			"<leader><space>",
