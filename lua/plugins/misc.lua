@@ -28,6 +28,23 @@ return {
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
+		keys = {
+			-- todo comments
+			{
+				"<leader>st",
+				function()
+					require("snacks").picker.todo_comments()
+				end,
+				desc = "Search TODO comments",
+			},
+			{
+				"<leader>sT",
+				function()
+					require("snacks").picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } })
+				end,
+				desc = "Search TODO/FIX/FIXME",
+			},
+		},
 	},
 	{
 		"Wansmer/treesj",
