@@ -102,16 +102,13 @@ return {
 				{},
 				vim.lsp.protocol.make_client_capabilities(),
 				(pcall(require, "blink.cmp") and require("blink.cmp").get_lsp_capabilities()) or {},
-				opts.capabilities or {}
+				opts.capabilities or {},
+				require("lsp-file-operations").default_capabilities()
 			)
 
 			local lspconfig = require("lspconfig")
 			lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
-				capabilities = vim.tbl_deep_extend(
-					"force",
-					vim.lsp.protocol.make_client_capabilities(),
-					require("lsp-file-operations").default_capabilities()
-				),
+				capabilities = capabilities,
 			})
 
 			local servers = {
@@ -144,6 +141,7 @@ return {
 				"prettierd",
 				"php-cs-fixer",
 				"pint",
+				"phpstan",
 				"clang-format",
 				"ruff",
 				"beautysh",

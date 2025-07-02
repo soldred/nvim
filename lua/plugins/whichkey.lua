@@ -45,6 +45,8 @@ return {
 			{ "<leader>s", group = "Search" },
 			{ "<leader>f", group = "Find" },
 			{ "<leader>g", group = "Git" },
+			{ "<leader>b", group = "Buffer" },
+			{ "<leader>t", group = "Tab" },
 		},
 	},
 	config = function(_, opts)
