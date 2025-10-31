@@ -10,18 +10,27 @@ return {
 		{
 			"<leader>e",
 			function()
-				local clients = vim.lsp.get_clients({ bufnr = 0 })
-				local dir = ""
+				local dir = nil
 
-				if #clients > 0 and clients[1].config.root_dir then
-					dir = clients[1].config.root_dir
-				else
-					dir = vim.fn.getcwd()
+				for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+					if client.config and client.config.root_dir then
+						dir = client.config.root_dir
+						break
+					end
 				end
-				dir = dir or ""
+
+				if not dir or dir == "" then
+					local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+					if vim.v.shell_error == 0 and git_root and git_root ~= "" then
+						dir = git_root
+					else
+						dir = vim.fn.getcwd()
+					end
+				end
+
 				vim.cmd("Neotree toggle dir=" .. vim.fn.fnameescape(dir))
 			end,
-			desc = "Toggle explorer",
+			desc = "Toggle explorer (root-aware)",
 			silent = true,
 		},
 	},
