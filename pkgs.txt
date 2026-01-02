@@ -1,4 +1,6 @@
 luarocks
 imagemagick
 fzf
-php
+fd
+python3
+python3-pip
