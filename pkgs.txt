@@ -1,6 +1,9 @@
-luarocks
-imagemagick
 fzf
-fd
+fd-find
+ripgrep
+gcc
+make
+git
+luarocks
 python3
 python3-pip
