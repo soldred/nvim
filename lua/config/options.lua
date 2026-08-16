@@ -11,7 +11,9 @@ vim.opt.showmode = false
 vim.opt.signcolumn = "auto"
 vim.opt.wrap = false
 vim.opt.inccommand = "split"
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
+vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
+vim.opt.shortmess:append("c")
 
 -- Window Splits
 vim.opt.splitright = true
