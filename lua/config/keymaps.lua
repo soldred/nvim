@@ -39,8 +39,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move up in buffer with cursor 
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result with cursor centered" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result with cursor centered" })
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word cursor is on globally" })
-vim.keymap.set("v", "<leader>s", [["hy:%s/\V<C-r>h/<C-r>h/gI<Left><Left><Left>]], { desc = "Replace visual selection globally" })
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word cursor is on globally" })
+vim.keymap.set("v", "<leader>r", [["hy:%s/\V<C-r>h/<C-r>h/gI<Left><Left><Left>]], { desc = "Replace visual selection globally" })
 
 -- Other
 vim.keymap.set("i", "<C-c>", "Esc", opts)

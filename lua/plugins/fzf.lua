@@ -8,9 +8,7 @@ vim.keymap.set("n", "<leader><space>", fzf.files, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>,", fzf.buffers, { desc = "Buffers" })
 vim.keymap.set("n", "<leader>/", fzf.live_grep, { desc = "Grep" })
 
-vim.keymap.set("n", "<leader>ff", fzf.files, { desc = "Find Files" })
-vim.keymap.set("n", "<leader>fa", fzf.files, { desc = "Find All Files" })
-vim.keymap.set("n", "<leader>fr", fzf.oldfiles, { desc = "Recent Files" })
+vim.keymap.set("n", "<leader>sr", fzf.oldfiles, { desc = "Recent Files" })
 
 vim.keymap.set("n", "<leader>sg", fzf.live_grep, { desc = "Grep" })
 vim.keymap.set({ "n", "x" }, "<leader>sw", fzf.grep_cword, { desc = "Grep Word" })
