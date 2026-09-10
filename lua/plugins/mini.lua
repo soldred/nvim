@@ -25,6 +25,7 @@ require("mini.surround").setup()
 -- | `sn` | Update n_lines |
 -- | `l` / `n` | as suffix for prev/next |
 
+-- mini clue ---
 local miniclue = require("mini.clue")
 miniclue.setup({
     triggers = {
@@ -68,3 +69,19 @@ miniclue.setup({
         miniclue.gen_clues.z(),
     },
 })
+
+--- mini completion ---
+local minicompletion = require("mini.completion")
+minicompletion.setup({
+    lsp_completion = {
+        auto_setup = true,
+    }
+})
+
+local MiniSnippets = require("mini.snippets")
+MiniSnippets.setup({
+    snippets = {
+        MiniSnippets.gen_loader.from_lang(), -- loads friendly-snippets
+    },
+})
+MiniSnippets.start_lsp_server({ match = false })

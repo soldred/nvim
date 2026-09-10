@@ -19,7 +19,11 @@ vim.pack.add({
 
     "https://github.com/catgoose/nvim-colorizer.lua",
 
-    "craftzdog/solarized-osaka.nvim",
+    "https://github.com/tpope/vim-sleuth",
+
+    "https://github.com/rafamadriz/friendly-snippets",
+
+    "https://github.com/craftzdog/solarized-osaka.nvim",
 })
 
 local path = vim.fn.stdpath("config") .. "/lua/plugins"

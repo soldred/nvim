@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "friendly-snippets": {
+      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
+    },
     "fzf-lua": {
       "rev": "05e44d38de0a79c11fba5f7bf8138791b1dbdd1e",
       "src": "https://github.com/ibhagwan/fzf-lua"
@@ -44,6 +48,10 @@
     "solarized-osaka.nvim": {
       "rev": "0df74ef0ed6ce9b5aa2d194f1bd6f25a64e11bcc",
       "src": "https://github.com/craftzdog/solarized-osaka.nvim"
+    },
+    "vim-sleuth": {
+      "rev": "be69bff86754b1aa5adcbb527d7fcd1635a84080",
+      "src": "https://github.com/tpope/vim-sleuth"
     }
   }
 }
