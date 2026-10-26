@@ -83,9 +83,17 @@ MiniDiff.setup({
 
 -- mini completion --
 local minicompletion = require("mini.completion")
+
+-- Snippets are hidden until you type something, and then sorted below LSP items
+local function process_items(items, base)
+    local kind_priority = { Snippet = base == "" and -1 or 99 }
+    return minicompletion.default_process_items(items, base, { kind_priority = kind_priority })
+end
+
 minicompletion.setup({
     lsp_completion = {
         auto_setup = true,
+        process_items = process_items,
     },
 })
 
