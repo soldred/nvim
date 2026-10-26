@@ -1,10 +1,15 @@
+git
+gcc
+make
+curl
+unzip
 fzf
 fd-find
 ripgrep
-gcc
-make
-git
-luarocks
-python3
-python3-pip
-tree-sitter-cli
+tree-sitter-cli  # needs 0.26.1 or newer
+xclip            # X11 clipboard
+wl-clipboard     # Wayland clipboard
+golang           # Mason builds gopls with Go
+luarocks         # optional: only for Mason packages that need it
+python3          # optional: same
+python3-pip      # optional: same
