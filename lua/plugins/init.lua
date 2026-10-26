@@ -29,12 +29,10 @@ vim.pack.add({
     "https://github.com/mason-org/mason.nvim",
 })
 
-local path = vim.fn.stdpath("config") .. "/lua/plugins"
+-- Explicit load order: lsp.lua needs mini.completion, so mini goes first.
+-- New plugin config files must be added to this list.
+local modules = { "mini", "lsp", "treesitter", "fzf", "neo-tree", "colorizer" }
 
-for _, file in ipairs(vim.fn.glob(path .. "/*.lua", false, true)) do
-    local name = vim.fn.fnamemodify(file, ":t:r")
-
-    if name ~= "init" then
-        require("plugins." .. name)
-    end
+for _, name in ipairs(modules) do
+    require("plugins." .. name)
 end

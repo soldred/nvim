@@ -14,7 +14,12 @@ vim.lsp.config("*", { capabilities = capabilities })
 vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
-            diagnostics = { globals = { "vim" } },
+            runtime = { version = "LuaJIT" },
+            workspace = {
+                -- Neovim's runtime gives completion and docs for `vim.*`
+                library = { vim.env.VIMRUNTIME },
+                checkThirdParty = false,
+            },
         },
     },
 })

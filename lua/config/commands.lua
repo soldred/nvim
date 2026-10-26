@@ -1,21 +1,20 @@
-vim.api.nvim_create_user_command("PackAdd", function(opts)
-    vim.pack.add(opts.fargs)
-end, { nargs = "+", desc = "Add plugins (:PackAdd user/repo1 user/repo2)" })
+-- Names of installed plugins, filtered by what's already typed (for tab-completion)
+local function pack_names(arglead)
+    local names = vim.tbl_map(function(p)
+        return p.spec.name
+    end, vim.pack.get())
+
+    return vim.tbl_filter(function(name)
+        return vim.startswith(name, arglead)
+    end, names)
+end
 
 -- Pack Delete and Update cmds are built-in on Nightly 0.13
 vim.api.nvim_create_user_command("PackDel", function(opts)
     vim.pack.del(opts.fargs)
-end, { nargs = "+", desc = "Delete plugins (:PackDel plugin1 plugin2)" })
+end, { nargs = "+", complete = pack_names, desc = "Delete plugins (:PackDel plugin1 plugin2)" })
 
 vim.api.nvim_create_user_command("PackUpdate", function(opts)
-    -- checks if any argument is passed
-    if opts.args:match("%S") then
-        -- update specific plugins
-        local plugins = vim.split(opts.args, "%s+", { trimempty = true })
-        -- update only specified plugins
-        vim.pack.update(plugins)
-    else
-        -- update all
-        vim.pack.update()
-    end
-end, { nargs = "*", desc = "Update all plugins or specific ones" })
+    -- no arguments -> update everything
+    vim.pack.update(#opts.fargs > 0 and opts.fargs or nil)
+end, { nargs = "*", complete = pack_names, desc = "Update all plugins or specific ones" })

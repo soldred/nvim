@@ -1,4 +1,4 @@
----- mini notify ----
+-- mini notify --
 require("mini.notify").setup({
     -- only show messages
     content = {
@@ -8,12 +8,17 @@ require("mini.notify").setup({
     },
 })
 
---- mini cmdline completion ---
+-- mini statusline (showmode is off, so this is where the current mode shows) --
+require("mini.statusline").setup({
+    use_icons = vim.g.have_nerd_font,
+})
+
+-- mini cmdline completion --
 require("mini.cmdline").setup({
     autocorrect = { enable = false },
 })
 
---- mini surround ---
+-- mini surround --
 require("mini.surround").setup()
 -- Default Keymaps
 -- | `sa` | Add surrounding or Direct with 'saiw' |
@@ -25,7 +30,7 @@ require("mini.surround").setup()
 -- | `sn` | Update n_lines |
 -- | `l` / `n` | as suffix for prev/next |
 
--- mini clue ---
+-- mini clue --
 local miniclue = require("mini.clue")
 miniclue.setup({
     triggers = {
@@ -76,7 +81,7 @@ MiniDiff.setup({
     source = MiniDiff.gen_source.git({ index = false }),
 })
 
---- mini completion ---
+-- mini completion --
 local minicompletion = require("mini.completion")
 minicompletion.setup({
     lsp_completion = {

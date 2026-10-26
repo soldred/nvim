@@ -32,8 +32,9 @@ local objects = {
     ["aa"] = "@parameter.outer",
     ["ac"] = "@comment.outer",
     ["ic"] = "@comment.inner",
-    ["at"] = "@tag.outer",
-    ["it"] = "@tag.inner",
+    -- capital T so Vim's built-in `at` / `it` tag objects keep working everywhere
+    ["aT"] = "@tag.outer",
+    ["iT"] = "@tag.inner",
     ["al"] = "@loop.outer",
     ["il"] = "@loop.inner",
     ["a?"] = "@conditional.outer",
@@ -57,8 +58,8 @@ end)
 vim.api.nvim_create_autocmd("FileType", {
     callback = function(args)
         local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
-        if lang then
-            pcall(vim.treesitter.start, args.buf, lang)
+        -- only switch to treesitter indenting if highlighting actually started
+        if lang and pcall(vim.treesitter.start, args.buf, lang) then
             vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end
     end,
