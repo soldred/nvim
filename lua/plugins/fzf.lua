@@ -1,5 +1,5 @@
 require("fzf-lua").setup({
-	"fzf-native",
+    "fzf-native",
 })
 
 local fzf = require("fzf-lua")

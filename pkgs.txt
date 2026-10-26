@@ -7,3 +7,4 @@ git
 luarocks
 python3
 python3-pip
+tree-sitter-cli

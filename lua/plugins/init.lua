@@ -1,13 +1,13 @@
 vim.pack.add({
     -- treesitter
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter-context", branch = "main" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter-context", version = "main" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 
     -- neotree
     {
-        src = 'https://github.com/nvim-neo-tree/neo-tree.nvim',
-        version = vim.version.range('3')
+        src = "https://github.com/nvim-neo-tree/neo-tree.nvim",
+        version = vim.version.range("3"),
     },
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/MunifTanjim/nui.nvim",

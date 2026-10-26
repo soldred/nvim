@@ -10,7 +10,7 @@ require("mini.notify").setup({
 
 --- mini cmdline completion ---
 require("mini.cmdline").setup({
-    autocorrect = { enable = false }
+    autocorrect = { enable = false },
 })
 
 --- mini surround ---
@@ -30,31 +30,31 @@ local miniclue = require("mini.clue")
 miniclue.setup({
     triggers = {
         -- Leader triggers
-        { mode = { 'n', 'x' }, keys = '<Leader>' },
+        { mode = { "n", "x" }, keys = "<Leader>" },
 
         -- `[` and `]` keys
-        { mode = 'n', keys = '[' },
-        { mode = 'n', keys = ']' },
+        { mode = "n", keys = "[" },
+        { mode = "n", keys = "]" },
 
         -- Built-in completion
-        { mode = 'i', keys = '<C-x>' },
+        { mode = "i", keys = "<C-x>" },
 
         -- `g` key
-        { mode = { 'n', 'x' }, keys = 'g' },
+        { mode = { "n", "x" }, keys = "g" },
 
         -- Marks
-        { mode = { 'n', 'x' }, keys = "'" },
-        { mode = { 'n', 'x' }, keys = '`' },
+        { mode = { "n", "x" }, keys = "'" },
+        { mode = { "n", "x" }, keys = "`" },
 
         -- Registers
-        { mode = { 'n', 'x' }, keys = '"' },
-        { mode = { 'i', 'c' }, keys = '<C-r>' },
+        { mode = { "n", "x" }, keys = '"' },
+        { mode = { "i", "c" }, keys = "<C-r>" },
 
         -- Window commands
-        { mode = 'n', keys = '<C-w>' },
+        { mode = "n", keys = "<C-w>" },
 
         -- `z` key
-        { mode = { 'n', 'x' }, keys = 'z' },
+        { mode = { "n", "x" }, keys = "z" },
     },
     window = {
         delay = 300,
@@ -73,7 +73,7 @@ miniclue.setup({
 -- mini diff --
 local MiniDiff = require("mini.diff")
 MiniDiff.setup({
-	source = MiniDiff.gen_source.git({ index = false }),
+    source = MiniDiff.gen_source.git({ index = false }),
 })
 
 --- mini completion ---
@@ -81,7 +81,7 @@ local minicompletion = require("mini.completion")
 minicompletion.setup({
     lsp_completion = {
         auto_setup = true,
-    }
+    },
 })
 
 local MiniSnippets = require("mini.snippets")

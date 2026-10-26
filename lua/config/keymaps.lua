@@ -27,8 +27,8 @@ vim.keymap.set("n", "<leader>tn", "<cmd>tabnext<CR>", { desc = "Next tab" })
 vim.keymap.set("n", "<leader>tp", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 
 -- Identation, lines and navigations
-vim.keymap.set("v", "J", "<cmd>m '>+1<CR>gv=gv", { desc = "Move line down" })
-vim.keymap.set("v", "K", "<cmd>m '<-2<CR>gv=gv", { desc = "Move line up" })
+vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 vim.keymap.set("v", ">", ">gv", opts)
 vim.keymap.set("v", "<", "<gv", opts)
@@ -39,15 +39,24 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Move up in buffer with cursor 
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result with cursor centered" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result with cursor centered" })
 
-vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word cursor is on globally" })
-vim.keymap.set("v", "<leader>r", [["hy:%s/\V<C-r>h/<C-r>h/gI<Left><Left><Left>]], { desc = "Replace visual selection globally" })
+vim.keymap.set(
+    "n",
+    "<leader>r",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "Replace word cursor is on globally" }
+)
+vim.keymap.set(
+    "v",
+    "<leader>r",
+    [["hy:%s/\V<C-r>h/<C-r>h/gI<Left><Left><Left>]],
+    { desc = "Replace visual selection globally" }
+)
 
 -- Other
-vim.keymap.set("i", "<C-c>", "Esc", opts)
+vim.keymap.set("i", "<C-c>", "<Esc>", opts)
 
 -- native undotree
 vim.keymap.set("n", "<leader>u", function()
     vim.cmd.packadd("nvim.undotree")
     require("undotree").open()
 end, { desc = "Toggle Builtin Undotree" })
-
