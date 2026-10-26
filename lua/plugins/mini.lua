@@ -54,7 +54,7 @@ miniclue.setup({
         { mode = 'n', keys = '<C-w>' },
 
         -- `z` key
-        { mode = { 'n', 'x' }, keys = 'z' },	
+        { mode = { 'n', 'x' }, keys = 'z' },
     },
     window = {
         delay = 300,
@@ -68,6 +68,12 @@ miniclue.setup({
         miniclue.gen_clues.windows(),
         miniclue.gen_clues.z(),
     },
+})
+
+-- mini diff --
+local MiniDiff = require("mini.diff")
+MiniDiff.setup({
+	source = MiniDiff.gen_source.git({ index = false }),
 })
 
 --- mini completion ---
