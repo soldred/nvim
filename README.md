@@ -1,21 +1,36 @@
+<div align="center">
+
 # .config/nvim
 
-A minimal, fast Neovim configuration that leans on native tools wherever possible: `vim.pack` for plugins, the built-in LSP client, and the `mini.nvim` suite instead of a pile of separate plugins.
+**A minimal, fast Neovim configuration that leans on native tools wherever possible.**
 
+`vim.pack` for plugins · the built-in LSP client · the `mini.nvim` suite instead of a pile of separate plugins
+
+![Neovim](https://img.shields.io/badge/Neovim-0.12+-57A143?style=for-the-badge&logo=neovim&logoColor=white)
+![Lua](https://img.shields.io/badge/Made%20with-Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white)
+![Godot](https://img.shields.io/badge/Godot-4.x-478CBF?style=for-the-badge&logo=godotengine&logoColor=white)
+![License](https://img.shields.io/github/license/soldred/nvim?style=for-the-badge)
+![Last commit](https://img.shields.io/github/last-commit/soldred/nvim?style=for-the-badge)
+
+[Inside](#-whats-inside) · [Requirements](#-requirements) · [Install](#-1-install-the-dependencies) · [Godot](#-godot-gdscript) · [Keys](#-handy-keys) · [Troubleshooting](#-troubleshooting)
+
+</div>
+
+> [!NOTE]
 > This is my personal configuration, shaped around my own workflow, so it may change without notice. You're welcome to use it or borrow from it. I run Fedora on Wayland, so the Fedora steps are the tested ones and the other platforms are best effort.
 
-## What's inside
+## 🧩 What's inside
 
-- **Plugins:** managed by the built-in `vim.pack` and pinned in `nvim-pack-lock.json`
-- **Syntax and text objects:** nvim-treesitter (`main` branch), treesitter-context and textobjects
-- **LSP:** native `vim.lsp` with nvim-lspconfig and Mason (Lua, Markdown, Go, Rust)
-- **Completion and snippets:** `mini.completion` and `mini.snippets` with friendly-snippets
-- **Navigation:** neo-tree (file explorer) and fzf-lua (files, grep, git, diagnostics)
-- **Quality of life:** `mini.clue` (key hints), `mini.surround`, `mini.diff`, `mini.notify`, `mini.cmdline`, `mini.statusline`, vim-sleuth and nvim-colorizer
-- **Godot:** GDScript language server, treesitter parsers, formatting with `gdformat`, and an external-editor bridge (see [Godot](#godot-gdscript))
-- **Theme:** solarized-osaka
+- 📦 **Plugins:** managed by the built-in `vim.pack` and pinned in `nvim-pack-lock.json`
+- 🌳 **Syntax and text objects:** nvim-treesitter (`main` branch), treesitter-context and textobjects
+- 🧠 **LSP:** native `vim.lsp` with nvim-lspconfig and Mason (Lua, Markdown, Go, Rust)
+- ✨ **Completion and snippets:** `mini.completion` and `mini.snippets` with friendly-snippets
+- 🧭 **Navigation:** neo-tree (file explorer) and fzf-lua (files, grep, git, diagnostics)
+- 🎛️ **Quality of life:** `mini.clue` (key hints), `mini.surround`, `mini.diff`, `mini.notify`, `mini.cmdline`, `mini.statusline`, `vim-sleuth` and `nvim-colorizer`
+- 🎮 **Godot:** GDScript language server, treesitter parsers, formatting with `gdformat`, and an external-editor bridge (see [Godot](#-godot-gdscript))
+- 🎨 **Theme:** [solarized-osaka](https://github.com/craftzdog/solarized-osaka.nvim)
 
-## Requirements
+## 📋 Requirements
 
 | Requirement | Why |
 | --- | --- |
@@ -31,11 +46,14 @@ A minimal, fast Neovim configuration that leans on native tools wherever possibl
 
 Optional: `luarocks`, `python3` and `pip` are only needed for Mason packages that use them. Nothing in this config does.
 
-## 1. Install the dependencies
+## 📦 1. Install the dependencies
 
-Pick your system. The commands below install `wl-clipboard` for Wayland. **If you use X11, install `xclip` instead.** After this step, `nvim --version` should report 0.12 or newer and `tree-sitter --version` 0.26.1 or newer.
+Pick your system. After this step, `nvim --version` should report 0.12 or newer and `tree-sitter --version` 0.26.1 or newer.
 
-### Fedora (tested)
+> [!TIP]
+> The commands below install `wl-clipboard` for Wayland. **If you use X11, install `xclip` instead.**
+
+### <img src="https://cdn.simpleicons.org/fedora" width="20" height="20" align="absmiddle" alt="" /> Fedora (tested)
 
 ```sh
 sudo dnf install neovim git gcc make curl unzip fzf fd-find ripgrep tree-sitter-cli wl-clipboard golang
@@ -43,14 +61,25 @@ sudo dnf install neovim git gcc make curl unzip fzf fd-find ripgrep tree-sitter-
 
 Check `nvim --version`. If the repository version is older than 0.12, install Neovim from the official tarball as described in the Debian/Ubuntu section. Nerd Fonts are not in the default repositories: download one from [nerdfonts.com](https://www.nerdfonts.com/font-downloads) and set it in your terminal.
 
-### Arch Linux
+<details>
+<summary>
+  <img src="https://cdn.simpleicons.org/archlinux" width="16" height="16" align="absmiddle" alt="" />
+  <b>Arch Linux</b>
+</summary>
 
 ```sh
 sudo pacman -S --needed neovim git base-devel curl unzip fzf fd ripgrep tree-sitter-cli wl-clipboard go
 sudo pacman -S --needed ttf-jetbrains-mono-nerd   # a Nerd Font (I like this one)
 ```
 
-### Debian / Ubuntu and derivatives
+</details>
+
+<details>
+<summary>
+  <img src="https://cdn.simpleicons.org/debian" width="16" height="16" align="absmiddle" alt="" />
+  <img src="https://cdn.simpleicons.org/ubuntu" width="16" height="16" align="absmiddle" alt="" />
+  <b>Debian / Ubuntu and derivatives</b>
+</summary>
 
 Most tools come from `apt`:
 
@@ -87,7 +116,13 @@ cargo install --locked tree-sitter-cli
 
 Option c) is to start Neovim once and run `:MasonInstall tree-sitter-cli`, then `:restart`.
 
-### macOS
+</details>
+
+<details>
+<summary>
+  <img src="https://cdn.simpleicons.org/apple/000/fff" width="16" height="16" align="absmiddle" alt="" />
+  <b>macOS</b>
+</summary>
 
 Requires [Homebrew](https://brew.sh).
 
@@ -99,7 +134,13 @@ brew install --cask font-jetbrains-mono-nerd-font   # a Nerd Font
 
 `curl`, `unzip`, `tar` and `gzip` ship with macOS, and the clipboard works out of the box.
 
-### Windows
+</details>
+
+<details>
+<summary>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.18.0/icons/windows11/windows11-original.svg" width="16" height="16" align="absmiddle" alt="" />
+  <b>Windows</b>
+</summary>
 
 Run these in PowerShell. They use [Scoop](https://scoop.sh):
 
@@ -111,11 +152,16 @@ scoop install JetBrainsMono-NF        # a Nerd Font
 
 Then select the font in Windows Terminal's settings. If you prefer another package manager, install the same tools with it. The config works the same everywhere, only the paths differ (see below).
 
-## 2. Install the config
+</details>
+
+## 💾 2. Install the config
+
+> [!WARNING]
+> These commands move your current Neovim config and plugin data out of the way (to `*.bak`). Only the optional clean-up step deletes anything.
 
 Back up your current Neovim files, then clone this repository into your config folder.
 
-### Linux and macOS
+### <img src="https://cdn.simpleicons.org/linux" width="20" height="20" align="absmiddle" alt="" /> <img src="https://cdn.simpleicons.org/apple/000/fff" width="20" height="20" align="absmiddle" alt="" /> Linux and macOS
 
 ```sh
 # Back up (required)
@@ -128,7 +174,7 @@ rm -rf ~/.local/state/nvim ~/.cache/nvim
 git clone https://github.com/soldred/nvim ~/.config/nvim
 ```
 
-### Windows (PowerShell)
+### <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.18.0/icons/windows11/windows11-original.svg" width="20" height="20" align="absmiddle" alt="" /> Windows (PowerShell)
 
 ```powershell
 Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak -ErrorAction SilentlyContinue
@@ -139,7 +185,7 @@ git clone https://github.com/soldred/nvim $env:LOCALAPPDATA\nvim
 
 > Optional: if you plan to turn this into your own config and push it to your own repository, remove the original history with `rm -rf ~/.config/nvim/.git` (on Windows: `Remove-Item -Recurse -Force $env:LOCALAPPDATA\nvim\.git`).
 
-## 3. First launch
+## 🚀 3. First launch
 
 1. Start `nvim`. It asks you to confirm the plugin installation. Say yes and wait for it to finish.
 2. Treesitter parsers compile in the background, so give it a minute. Run `:restart` afterwards.
@@ -152,9 +198,10 @@ git clone https://github.com/soldred/nvim $env:LOCALAPPDATA\nvim
    Only install the ones you need. The enabled servers are listed in `lua/plugins/lsp.lua`.
 4. Run `:checkhealth` if anything looks off.
 
-## Godot (GDScript)
+## 🎮 Godot (GDScript)
 
-For Godot 4 projects. Godot has to be open on the project for the language server to work.
+> [!NOTE]
+> For Godot 4 projects. Godot has to be open on the project for the language server to work.
 
 1. **Formatter (optional):** `:MasonInstall gdtoolkit` installs `gdformat` and `gdlint`. `<leader>f` in a `.gd` file runs `gdformat`, because Godot's language server cannot format.
 2. **Language server:** nothing to set up. Godot itself serves it on `127.0.0.1:6005` (**Editor Settings > Network > Language Server**). If you change the port there, set the `GDScript_Port` environment variable before starting Neovim. Opening a `.gd` file while Godot is closed shows a connection error, which is expected.
@@ -175,7 +222,7 @@ For Godot 4 projects. Godot has to be open on the project for the language serve
    - Optional: enable **Text Editor > Behavior > Auto Reload Scripts on External Change** so Godot picks up your edits.
 4. **Debugging** stays in Godot: run the game from the editor and use its Debugger panel. You cannot click a breakpoint into the gutter from Neovim, so write the `breakpoint` keyword in the script instead.
 
-## Handy keys
+## 🔑 Some handy keys
 
 The leader key is `Space`. Press it and wait a moment, and `mini.clue` shows what is available.
 
@@ -192,14 +239,14 @@ The leader key is `Space`. Press it and wait a moment, and `mini.clue` shows wha
 | `<C-h/j/k/l>` | Move between windows |
 | `J` / `K` (visual) | Move the selected lines down / up |
 
-## Managing plugins
+## 🔌 Managing plugins
 
-- Add a plugin: put its URL in the `vim.pack.add({ ... })` list in `lua/plugins/init.lua`, add its settings file under `lua/plugins/`, and list that file in `lua/plugins/init.lua`.
-- `:PackUpdate [plugin ...]` updates everything or only the named plugins. Review the changes in the confirmation buffer, then `:write` to accept or `:quit` to discard.
-- `:PackDel plugin ...` removes plugins, and `:restart` reloads Neovim.
-- `nvim-pack-lock.json` pins exact plugin versions, so commit it after updating.
+- ➕ Add a plugin: put its URL in the `vim.pack.add({ ... })` list in `lua/plugins/init.lua`, add its settings file under `lua/plugins/`, and list that file in `lua/plugins/init.lua`.
+- 🔄 `:PackUpdate [plugin ...]` updates everything or only the named plugins. Review the changes in the confirmation buffer, then `:write` to accept or `:quit` to discard.
+- 🗑️ `:PackDel plugin ...` removes plugins, and `:restart` reloads Neovim.
+- 📌 `nvim-pack-lock.json` pins exact plugin versions, so commit it after updating.
 
-## Layout
+## 📁 Layout
 
 ```
 init.lua                  entry point
@@ -210,7 +257,7 @@ nvim-pack-lock.json       pinned plugin versions
 stylua.toml               formatter settings
 ```
 
-Format the config with stylua (`:MasonInstall stylua`). Mason's `bin` folder is only on `PATH` inside Neovim, so run it from there:
+Format the config (not required) with stylua (`:MasonInstall stylua`). Mason's `bin` folder is only on `PATH` inside Neovim, so run it from there:
 
 ```vim
 :cd ~/.config/nvim
@@ -219,13 +266,13 @@ Format the config with stylua (`:MasonInstall stylua`). Mason's `bin` folder is 
 
 From a regular terminal, call it by its full path instead (`~/.local/share/nvim/mason/bin/stylua .` on Linux and macOS).
 
-## Troubleshooting
+## 🧰 Troubleshooting
 
-- **Treesitter errors or "tree-sitter CLI not found":** install `tree-sitter-cli` 0.26.1 or newer (see above), then run `:restart` and `:checkhealth nvim-treesitter`.
-- **Broken icons or empty boxes:** set a Nerd Font in your terminal.
-- **File picker finds nothing on Debian/Ubuntu:** check that the `fd` symlink exists and that `~/.local/bin` is on your `PATH`.
-- **No completion or diagnostics for a language:** install its server with `:Mason`, then check `:checkhealth vim.lsp`.
-- **`vim.pack` is nil or `vim.lsp.config` is missing:** your Neovim is too old, so install 0.12 or newer.
+- 🌳 **Treesitter errors or "tree-sitter CLI not found":** install `tree-sitter-cli` 0.26.1 or newer (see above), then run `:restart` and `:checkhealth nvim-treesitter`.
+- 🔤 **Broken icons or empty boxes:** set a Nerd Font in your terminal.
+- 🔍 **File picker finds nothing on Debian/Ubuntu:** check that the `fd` symlink exists and that `~/.local/bin` is on your `PATH`.
+- 🧠 **No completion or diagnostics for a language:** install its server with `:Mason`, then check `:checkhealth vim.lsp`.
+- ⏳ **`vim.pack` is nil or `vim.lsp.config` is missing:** your Neovim is too old, so install 0.12 or newer.
 
 ## License
 
