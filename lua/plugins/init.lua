@@ -31,7 +31,7 @@ vim.pack.add({
 
 -- Explicit load order: lsp.lua needs mini.completion, so mini goes first.
 -- New plugin config files must be added to this list.
-local modules = { "mini", "lsp", "treesitter", "fzf", "neo-tree", "colorizer" }
+local modules = { "mini", "lsp", "treesitter", "fzf", "neo-tree", "colorizer", "godot" }
 
 for _, name in ipairs(modules) do
     require("plugins." .. name)

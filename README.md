@@ -12,6 +12,7 @@ A minimal, fast Neovim configuration that leans on native tools wherever possibl
 - **Completion and snippets:** `mini.completion` and `mini.snippets` with friendly-snippets
 - **Navigation:** neo-tree (file explorer) and fzf-lua (files, grep, git, diagnostics)
 - **Quality of life:** `mini.clue` (key hints), `mini.surround`, `mini.diff`, `mini.notify`, `mini.cmdline`, `mini.statusline`, vim-sleuth and nvim-colorizer
+- **Godot:** GDScript language server, treesitter parsers, formatting with `gdformat`, and an external-editor bridge (see [Godot](#godot-gdscript))
 - **Theme:** solarized-osaka
 
 ## Requirements
@@ -150,6 +151,29 @@ git clone https://github.com/soldred/nvim $env:LOCALAPPDATA\nvim
 
    Only install the ones you need. The enabled servers are listed in `lua/plugins/lsp.lua`.
 4. Run `:checkhealth` if anything looks off.
+
+## Godot (GDScript)
+
+For Godot 4 projects. Godot has to be open on the project for the language server to work.
+
+1. **Formatter (optional):** `:MasonInstall gdtoolkit` installs `gdformat` and `gdlint`. `<leader>f` in a `.gd` file runs `gdformat`, because Godot's language server cannot format.
+2. **Language server:** nothing to set up. Godot itself serves it on `127.0.0.1:6005` (**Editor Settings > Network > Language Server**). If you change the port there, set the `GDScript_Port` environment variable before starting Neovim. Opening a `.gd` file while Godot is closed shows a connection error, which is expected.
+3. **Open scripts from Godot in this Neovim:**
+   - Start Neovim inside the project folder (`cd ~/projects/mygame && nvim .`). Whenever a `project.godot` is found, Neovim listens on `~/.cache/nvim/godot.sock`.
+   - In Godot, open **Editor > Editor Settings > Text Editor > External**, enable **Use External Editor** and set:
+
+     | Field | Value |
+     | --- | --- |
+     | Exec Path | the output of `which nvim`, for example `/usr/bin/nvim` |
+     | Exec Flags | see below |
+
+     ```
+     --server /home/YOURNAME/.cache/nvim/godot.sock --remote-send "<C-\><C-N>:lua require('plugins.godot').open('{file}', {line}, {col})<CR>"
+     ```
+
+     Godot does not expand `~` or `$HOME`, so write the full path. Run `:echo stdpath("cache")` in Neovim to see it.
+   - Optional: enable **Text Editor > Behavior > Auto Reload Scripts on External Change** so Godot picks up your edits.
+4. **Debugging** stays in Godot: run the game from the editor and use its Debugger panel. You cannot click a breakpoint into the gutter from Neovim, so write the `breakpoint` keyword in the script instead.
 
 ## Handy keys
 

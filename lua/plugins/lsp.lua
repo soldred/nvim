@@ -29,4 +29,5 @@ vim.lsp.enable({
     "marksman",
     "gopls",
     "rust_analyzer",
+    "gdscript", -- Godot hosts this server itself (127.0.0.1:6005), the editor must be open on the project
 })

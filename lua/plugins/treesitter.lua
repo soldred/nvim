@@ -16,6 +16,10 @@ ts.install({
     "http",
     "dockerfile",
     "sql",
+    -- godot
+    "gdscript",
+    "godot_resource", -- .tscn and .tres
+    "gdshader",
 })
 
 textobjects.setup({
